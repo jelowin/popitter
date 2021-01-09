@@ -48,7 +48,14 @@ export default function AppLayout({ children }) {
         }
 
         * {
+          padding: 0;
+          margin: 0;
           box-sizing: border-box;
+        }
+
+        ol,
+        ul {
+          list-style: none;
         }
       `}</style>
     </>

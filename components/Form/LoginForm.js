@@ -1,10 +1,13 @@
+import { useRouter } from "next/router"
 import Button from "components/Button"
 import Input from "components/Input"
 import EmailSvg from "components/Svg/EmailSvg"
 import { loginWithEmail } from "firebase/client"
 import { useCallback, useState } from "react"
+import { errorHandler } from "utils/errorHandler"
 
 export default function LoginForm() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     email: null,
     password: null,
@@ -19,6 +22,10 @@ export default function LoginForm() {
   const handleSubmit = useCallback((event) => {
     event.preventDefault()
     loginWithEmail(formData.email, formData.password)
+      .then((user) => {
+        router.push("/dashboard")
+      })
+      .catch(errorHandler)
   })
 
   return (
