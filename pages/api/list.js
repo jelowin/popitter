@@ -1,5 +1,4 @@
 export default function handler(req, res) {
-  console.log("REQUESTED", req.query)
   res.statusCode = 200
   res.setHeader("Content-Type", "application/json")
   res.end(

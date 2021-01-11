@@ -7,10 +7,22 @@
 }
 
 .modalContent {
-  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 50vh;
   padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .modalButton {
-  display: block;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.button {
+  display: flex;
+  justify-content: flex-end;
 }

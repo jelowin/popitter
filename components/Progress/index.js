@@ -3,9 +3,9 @@ import styles from "./Progress.module.css"
 export default function Progress({ currentQuestion, questions }) {
   return (
     <div className={styles.progress}>
-      <h2>
+      <h4>
         Pregunta {currentQuestion + 1} de {questions.length}
-      </h2>
+      </h4>
     </div>
   )
 }

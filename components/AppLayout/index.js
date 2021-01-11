@@ -7,7 +7,7 @@ export default function AppLayout({ children }) {
   return (
     <>
       <div>
-        <main>{children}</main>
+        <main id="main">{children}</main>
       </div>
       <style jsx>{`
         div {

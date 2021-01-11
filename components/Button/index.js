@@ -1,22 +1,19 @@
-import { colors } from "../../styles/theme"
-
-export default function Button({ children, onClick, type }) {
+export default function Button({ children, className, onClick, type }) {
   return (
     <>
-      <button type={type} onClick={onClick}>
+      <button className={className} type={type} onClick={onClick}>
         {children}
       </button>
       <style jsx>{`
         button {
           align-items: center;
-          background-color: ${colors.primary};
           border-radius: 99px;
           border: 0;
           color: #fff;
           cursor: pointer;
           display: flex;
           font-size: 16px;
-          font-weight: 800;
+          font-weight: 500;
           outline: 0;
           padding: 8px 24px;
           transition: opacity 0.3s ease;

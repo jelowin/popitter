@@ -5,9 +5,11 @@ export default function List({ items }) {
     <ul>
       {items &&
         items.map((item, idx) => (
-          <Link key={idx} href={`/test/${item.slug}`}>
-            <a>{item.name}</a>
-          </Link>
+          <li key={idx}>
+            <Link href={`/test/${item.slug}`}>
+              <a>{item.name}</a>
+            </Link>
+          </li>
         ))}
     </ul>
   )

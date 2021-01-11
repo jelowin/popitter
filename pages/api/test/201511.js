@@ -1,12 +1,11 @@
 export default function handler(req, res) {
-  console.log("REQUESTED", req.query)
   res.statusCode = 200
   res.setHeader("Content-Type", "application/json")
   res.end(
     JSON.stringify([
       {
         id: "1",
-        question: "El artículo 1 de la Ley Hipotecaria señala que:",
+        question: "El artículo 33 de la Ley Hipotecaria señala que:",
         answers: [
           {
             id: "1",
