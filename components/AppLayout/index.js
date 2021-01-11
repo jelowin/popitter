@@ -23,6 +23,7 @@ export default function AppLayout({ children }) {
           height: 100%;
           width: 100%;
           overflow-y: auto;
+          padding: 0 20px;
         }
 
         @media (min-width: ${breakpoints.mobile}) {

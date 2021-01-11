@@ -2,6 +2,7 @@ import { colors } from "styles/theme"
 import AppLayout from "components/AppLayout"
 import Head from "next/head"
 import LoginForm from "components/Form/LoginForm"
+import Section from "components/Section"
 
 export default function Home() {
   return (
@@ -12,13 +13,13 @@ export default function Home() {
       </Head>
 
       <AppLayout>
-        <section>
+        <Section>
           <h1>Popitter</h1>
           <h2>Prepare your exam and approve!👍</h2>
           <div>
             <LoginForm />
           </div>
-        </section>
+        </Section>
       </AppLayout>
 
       <style jsx>{`

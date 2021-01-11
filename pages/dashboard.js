@@ -1,13 +1,14 @@
 import List from "components/List"
 import { useEffect, useState } from "react"
 import AppLayout from "components/AppLayout"
+import Section from "components/Section"
 
 export default function Home() {
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    fetch("api/test")
+    fetch("api/list")
       .then((response) => response.json())
       .then((data) => {
         setItems(data)
@@ -19,12 +20,12 @@ export default function Home() {
   return (
     <>
       <AppLayout>
-        <section>
+        <Section>
           <h1>Listado de tests</h1>
           <div>
             <List items={items} isLoading={isLoading}></List>
           </div>
-        </section>
+        </Section>
       </AppLayout>
       <style jsx>{`
         section {

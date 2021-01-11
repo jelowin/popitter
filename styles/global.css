@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-2xl text-primary font-bold;
+}
+
+h2 {
+  @apply text-xl text-primary font-semibold;
+}
+
+h3 {
+  @apply text-lg text-primary font-medium;
+}

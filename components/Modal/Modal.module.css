@@ -1,0 +1,16 @@
+.modal {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.modalContent {
+  height: 80vh;
+  padding: 10px 20px;
+}
+
+.modalButton {
+  display: block;
+}
