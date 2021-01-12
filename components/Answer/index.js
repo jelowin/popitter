@@ -1,21 +1,30 @@
 import { useQuizState } from "context/QuizContext"
-import styles from "./Answer.module.css"
 
 export default function Answer({ answer }) {
-  const [contextState, setContextState] = useQuizState()
+  const [, setContextState] = useQuizState()
 
   const handleCheckAnswer = (isCorrect) => {
     if (isCorrect) {
-      setContextState({ ...contextState, score: contextState.score + 1 })
-      setContextState({ ...contextState, showCorrectModal: true })
+      setContextState((prevState) => {
+        return {
+          ...prevState,
+          score: prevState.score + 1,
+          showCorrectModal: true,
+        }
+      })
     } else {
-      setContextState({ ...contextState, showIncorrectModal: true })
+      setContextState((prevState) => {
+        return {
+          ...prevState,
+          showIncorrectModal: true,
+        }
+      })
     }
   }
 
   return (
     <span
-      className={styles.card}
+      className="flex justify-center items-center text-justify p-2.5 cursor-pointer	rounded-lg hover:border-secondary"
       key={answer.id}
       onClick={() => handleCheckAnswer(answer.correct)}
     >

@@ -8,7 +8,10 @@ export default function Score() {
   }
   return (
     <div className="text-center">
-      <h2>Tu puntuación final es: {calculatePercentage()}</h2>
+      <h3 className="mb-4">
+        Has acertado {contextState.score} de {contextState.questions.length}
+      </h3>
+      <h2 className="mb-5">Tu puntuación final es: {calculatePercentage()}</h2>
     </div>
   )
 }

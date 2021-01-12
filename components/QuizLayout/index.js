@@ -13,40 +13,67 @@ export default function QuizLayout() {
   const [contextState, setContextState] = useQuizState()
 
   const handleCloseScoreModal = () => {
-    setContextState({ ...contextState, showScoreModal: false })
+    setContextState((prevState) => {
+      return {
+        ...prevState,
+        showScoreModal: false,
+      }
+    })
   }
 
   const handleCloseCorrectModal = () => {
-    setContextState({ ...contextState, showCorrectModal: false })
+    setContextState((prevState) => {
+      return {
+        ...prevState,
+        showCorrectModal: false,
+      }
+    })
   }
 
   const handleCloseIncorrectModal = () => {
-    setContextState({ ...contextState, showIncorrectModal: false })
+    setContextState((prevState) => {
+      return {
+        ...prevState,
+        showIncorrectModal: false,
+      }
+    })
   }
 
   const handleRetryQuiz = () => {
-    setContextState({ ...contextState, currentQuestion: 0, score: 0 })
+    setContextState((prevState) => {
+      return {
+        ...prevState,
+        currentQuestion: 0,
+        score: 0,
+      }
+    })
     handleCloseScoreModal()
   }
 
   const handleNextQuestion = () => {
     const nextQuestion = contextState.currentQuestion + 1
 
-    setContextState({
-      ...contextState,
-      showCorrectModal: false,
-      showIncorrectModal: false,
+    setContextState((prevState) => {
+      return {
+        ...prevState,
+        showCorrectModal: false,
+        showIncorrectModal: false,
+      }
     })
 
     if (nextQuestion < contextState.questions.length) {
-      setContextState({
-        ...contextState,
-        currentQuestion: nextQuestion,
+      setContextState((prevState) => {
+        return {
+          ...prevState,
+          currentQuestion: nextQuestion,
+        }
       })
     } else {
-      setContextState({
-        ...contextState,
-        showScoreModal: true,
+      setContextState((prevState) => {
+        return {
+          ...prevState,
+          showScoreModal: true,
+        }
       })
     }
   }
@@ -57,6 +84,11 @@ export default function QuizLayout() {
         <>
           <Progress />
           <Question />
+          <div className="flex justify-center mt-5">
+            <Button className="bg-primary" onClick={handleNextQuestion}>
+              Siguiente
+            </Button>
+          </div>
         </>
       ) : (
         <Spinner />
@@ -87,11 +119,6 @@ export default function QuizLayout() {
               <HappyIcon />
             </div>
             <h2 className="text-white text-center">Respuesta correcta</h2>
-            <div className="flex justify-center mt-5">
-              <Button className="bg-primary" onClick={handleNextQuestion}>
-                Siguiente
-              </Button>
-            </div>
           </div>
         </ModalPortal>
       )}
@@ -103,11 +130,6 @@ export default function QuizLayout() {
               <SadIcon />
             </div>
             <h2 className="text-white text-center">Respuesta incorrecta</h2>
-            <div className="flex justify-center mt-5">
-              <Button className="bg-primary" onClick={handleNextQuestion}>
-                Siguiente
-              </Button>
-            </div>
           </div>
         </ModalPortal>
       )}

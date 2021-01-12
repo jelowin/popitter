@@ -1,6 +1,5 @@
 import Answer from "components/Answer"
 import { useQuizState } from "context/QuizContext"
-import styles from "./Question.module.css"
 
 export default function Question() {
   const [contextState] = useQuizState()
@@ -13,13 +12,13 @@ export default function Question() {
           data-id={contextState.questions[contextState.currentQuestion].id}
           className
         >
-          <div className={styles.title}>
+          <div className="flex flex-col justify-center text-center mb-5 p-2.5">
             <h3 className="text-justify">
               {contextState.questions[contextState.currentQuestion].question}
             </h3>
           </div>
 
-          <div className={styles.grid}>
+          <div className="grid grid-columns-1 grid-rows-4 gap-y-4">
             {contextState.questions[contextState.currentQuestion].answers.map(
               (answer) => {
                 return <Answer key={answer.id} answer={answer}></Answer>

@@ -1,13 +1,12 @@
 import CloseIcon from "components/Icons/CloseIcon"
 import ReactDOM from "react-dom"
-import styles from "./Modal.module.css"
 
 function Modal({ children, onClose }) {
   return (
-    <div className={styles.modal}>
-      <div className={styles.modalContent}>
-        <button className={styles.modalButton} onClick={onClose}>
-          <div className={styles.button}>
+    <div className="fixed inset-0">
+      <div className="flex flex-col justify-center items-center rounded-lg p-2.5">
+        <button className="flex justify-end" onClick={onClose}>
+          <div className="flex justify-end">
             <CloseIcon />
           </div>
         </button>
