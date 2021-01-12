@@ -2,7 +2,7 @@ import Answer from "components/Answer"
 import { useQuizState } from "context/QuizContext"
 
 export default function Question() {
-  const [contextState] = useQuizState()
+  const { contextState } = useQuizState()
 
   return (
     <>
@@ -10,12 +10,11 @@ export default function Question() {
         <div
           key={contextState.questions[contextState.currentQuestion].id}
           data-id={contextState.questions[contextState.currentQuestion].id}
-          className
         >
           <div className="flex flex-col justify-center text-center mb-5 p-2.5">
-            <h3 className="text-justify">
+            <h4 className="text-justify">
               {contextState.questions[contextState.currentQuestion].question}
-            </h3>
+            </h4>
           </div>
 
           <div className="grid grid-columns-1 grid-rows-4 gap-y-4">

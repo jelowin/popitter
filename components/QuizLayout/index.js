@@ -1,7 +1,8 @@
 import Button from "components/Button"
+import Header from "components/Header"
 import HappyIcon from "components/Icons/HappyIcon"
 import SadIcon from "components/Icons/SadIcon"
-import ModalPortal from "components/Modal"
+import Modal from "components/Modal"
 import Progress from "components/Progress"
 import Question from "components/Question"
 import Score from "components/Score"
@@ -10,7 +11,7 @@ import { useQuizState } from "context/QuizContext"
 import Link from "next/link"
 
 export default function QuizLayout() {
-  const [contextState, setContextState] = useQuizState()
+  const { contextState, setContextState } = useQuizState()
 
   const handleCloseScoreModal = () => {
     setContextState((prevState) => {
@@ -79,9 +80,10 @@ export default function QuizLayout() {
   }
 
   return (
-    <div className="w-full">
+    <>
       {contextState.questions ? (
-        <>
+        <div className="w-full">
+          <Header />
           <Progress />
           <Question />
           <div className="flex justify-center mt-5">
@@ -89,13 +91,12 @@ export default function QuizLayout() {
               Siguiente
             </Button>
           </div>
-        </>
+        </div>
       ) : (
         <Spinner />
       )}
-
       {contextState.showScoreModal && (
-        <ModalPortal onClose={handleCloseScoreModal}>
+        <Modal onClose={handleCloseScoreModal}>
           <div className="flex flex-col justify-center">
             <Score />
             <div className="flex justify-around">
@@ -109,30 +110,30 @@ export default function QuizLayout() {
               </Button>
             </div>
           </div>
-        </ModalPortal>
+        </Modal>
       )}
 
       {contextState.showCorrectModal && (
-        <ModalPortal onClose={handleCloseCorrectModal}>
-          <div className="flex flex-col justify-center bg-secondary">
+        <Modal onClose={handleCloseCorrectModal}>
+          <div className="flex flex-col justify-center bg-secondary p-6">
             <div className="flex justify-center">
               <HappyIcon />
             </div>
-            <h2 className="text-white text-center">Respuesta correcta</h2>
+            <h3 className="text-white text-center">Respuesta correcta</h3>
           </div>
-        </ModalPortal>
+        </Modal>
       )}
 
       {contextState.showIncorrectModal && (
-        <ModalPortal onClose={handleCloseIncorrectModal}>
-          <div className="flex flex-col justify-center bg-primary">
+        <Modal onClose={handleCloseIncorrectModal}>
+          <div className="flex flex-col justify-center bg-primary p-6">
             <div className="flex justify-center">
               <SadIcon />
             </div>
             <h2 className="text-white text-center">Respuesta incorrecta</h2>
           </div>
-        </ModalPortal>
+        </Modal>
       )}
-    </div>
+    </>
   )
 }

@@ -1,7 +1,7 @@
 import { useQuizState } from "context/QuizContext"
 
 export default function Score() {
-  const [contextState] = useQuizState()
+  const { contextState } = useQuizState()
 
   const calculatePercentage = () => {
     return `${(contextState.score / contextState.questions.length) * 100} %`

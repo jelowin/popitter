@@ -43,7 +43,7 @@ export default function LoginForm() {
           onChange={handleChange}
           placeholder="Your password"
         ></Input>
-        <Button className="bg-primary" type="submit">
+        <Button type="submit">
           <EmailSvg />
           Login
         </Button>

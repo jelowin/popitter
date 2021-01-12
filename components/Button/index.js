@@ -1,30 +1,16 @@
-export default function Button({ children, className, onClick, type }) {
+export default function Button({ children, className, onClick, ...restProps }) {
   return (
     <>
-      <button className={className} type={type} onClick={onClick}>
+      <button
+        className="flex items-center text-base text-white font-medium bg-primary border-0 rounded-full py-2 px-6 cursor-pointer transition-opacity focus:outline-none hover:opacity-70"
+        onClick={onClick}
+        {...restProps}
+      >
         {children}
       </button>
       <style jsx>{`
-        button {
-          align-items: center;
-          border-radius: 99px;
-          border: 0;
-          color: #fff;
-          cursor: pointer;
-          display: flex;
-          font-size: 16px;
-          font-weight: 500;
-          outline: 0;
-          padding: 8px 24px;
-          transition: opacity 0.3s ease;
-        }
-
         button > :global(svg) {
           margin-right: 8px;
-        }
-
-        button:hover {
-          opacity: 0.7;
         }
       `}</style>
     </>

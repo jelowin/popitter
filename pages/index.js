@@ -10,11 +10,16 @@ export default function Home() {
       <Head>
         <title>Popitter 🐙</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.gstatic.com"></link>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lilita+One:wght@400;700&display=swap"
+          rel="stylesheet"
+        ></link>
       </Head>
 
       <AppLayout>
         <Section>
-          <h1>Popitter</h1>
+          <h1 className="font-logo">Popitter</h1>
           <h2>Prepare your exam and approve!👍</h2>
           <div>
             <LoginForm />

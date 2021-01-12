@@ -26,7 +26,7 @@ function QuizProvider({ children, testId }) {
   }, [])
 
   return (
-    <QuizStateContext.Provider value={[contextState, setContextState]}>
+    <QuizStateContext.Provider value={{ contextState, setContextState }}>
       {children}
     </QuizStateContext.Provider>
   )

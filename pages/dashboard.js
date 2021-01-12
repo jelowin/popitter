@@ -7,7 +7,7 @@ export default function Home({ data }) {
     <>
       <AppLayout>
         <Section>
-          <h1>Listado de tests</h1>
+          <h2 className="mb-2">Listado de tests</h2>
           <div>
             <List items={data}></List>
           </div>

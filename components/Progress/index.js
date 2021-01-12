@@ -1,17 +1,16 @@
 import { useQuizState } from "context/QuizContext"
-import styles from "./Progress.module.css"
 
 export default function Progress() {
-  const [contextState] = useQuizState()
+  const { contextState } = useQuizState()
 
   return (
     <>
       {contextState.questions ? (
-        <div className={styles.progress}>
-          <h4>
+        <div className="flex justify-center mb-2">
+          <h5>
             Pregunta {contextState.currentQuestion + 1} de{" "}
             {contextState.questions.length}
-          </h4>
+          </h5>
         </div>
       ) : null}
     </>

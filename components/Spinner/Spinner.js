@@ -1,6 +1,7 @@
 import React from "react"
-import styles from "./Spinner.module.css"
 
 export default function Spinner() {
-  return <div className={styles.spinner}></div>
+  return (
+    <div className="w-9 h-9 animate-spin rounded-3xl border-l-4 border-primary"></div>
+  )
 }

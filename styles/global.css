@@ -3,17 +3,25 @@
 @tailwind utilities;
 
 h1 {
-  @apply text-2xl text-primary font-bold mb-5;
+  @apply text-5xl text-primary font-bold mb-5;
 }
 
 h2 {
-  @apply text-xl text-primary font-semibold;
+  @apply text-2xl text-primary font-semibold;
 }
 
 h3 {
-  @apply text-lg text-primary font-medium;
+  @apply text-xl text-primary font-medium;
 }
 
 h4 {
-  @apply text-sm text-primary font-normal;
+  @apply text-lg text-primary font-semibold;
+}
+
+h5 {
+  @apply text-base text-primary font-semibold;
+}
+
+:-webkit-scrollbar {
+  display: none;
 }
