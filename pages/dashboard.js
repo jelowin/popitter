@@ -1,43 +1,28 @@
 import List from "components/List"
-import { useEffect, useState } from "react"
 import AppLayout from "components/AppLayout"
 import Section from "components/Section"
 
-export default function Home() {
-  const [items, setItems] = useState([])
-
-  useEffect(() => {
-    fetch("api/list")
-      .then((response) => response.json())
-      .then((data) => {
-        setItems(data)
-      })
-      .catch(console.error)
-  }, [])
-
+export default function Home({ data }) {
   return (
     <>
       <AppLayout>
         <Section>
           <h1>Listado de tests</h1>
           <div>
-            <List items={items}></List>
+            <List items={data}></List>
           </div>
         </Section>
       </AppLayout>
-      <style jsx>{`
-        section {
-          display: grid;
-          height: 100%;
-          place-items: center;
-          place-content: center;
-        }
-
-        ul {
-          display: flex;
-          justify-content: center;
-        }
-      `}</style>
     </>
   )
+}
+
+export async function getServerSideProps() {
+  const res = await fetch("http://localhost:3000/api/list")
+  const data = await res.json()
+  return {
+    props: {
+      data,
+    },
+  }
 }
