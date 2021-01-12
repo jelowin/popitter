@@ -5,14 +5,12 @@ import Section from "components/Section"
 
 export default function Home() {
   const [items, setItems] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetch("api/list")
       .then((response) => response.json())
       .then((data) => {
         setItems(data)
-        setIsLoading(false)
       })
       .catch(console.error)
   }, [])
@@ -23,7 +21,7 @@ export default function Home() {
         <Section>
           <h1>Listado de tests</h1>
           <div>
-            <List items={items} isLoading={isLoading}></List>
+            <List items={items}></List>
           </div>
         </Section>
       </AppLayout>

@@ -5,65 +5,67 @@ import ModalPortal from "components/Modal"
 import Progress from "components/Progress"
 import Question from "components/Question"
 import Score from "components/Score"
+import Spinner from "components/Spinner/Spinner"
+import { useQuizState } from "context/QuizContext"
 import Link from "next/link"
-import { useState } from "react"
 
-export default function QuizLayout({ questions }) {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [score, setScore] = useState(0)
-  const [showScoreModal, setShowScoreModal] = useState(false)
-  const [showCorrectModal, setShowCorrectModal] = useState(false)
-  const [showIncorrectModal, setShowIncorrectModal] = useState(false)
-
-  const handleShowScoreModal = () => {
-    setShowScoreModal(true)
-  }
+export default function QuizLayout() {
+  const [contextState, setContextState] = useQuizState()
 
   const handleCloseScoreModal = () => {
-    setShowScoreModal(false)
+    setContextState({ ...contextState, showScoreModal: false })
   }
+
   const handleCloseCorrectModal = () => {
-    setShowCorrectModal(false)
+    setContextState({ ...contextState, showCorrectModal: false })
   }
+
   const handleCloseIncorrectModal = () => {
-    setShowIncorrectModal(false)
+    setContextState({ ...contextState, showIncorrectModal: false })
   }
 
   const handleRetryQuiz = () => {
-    setCurrentQuestion(0)
-    setScore(0)
-    setShowScoreModal(false)
+    setContextState({ ...contextState, currentQuestion: 0, score: 0 })
+    handleCloseScoreModal()
   }
 
   const handleNextQuestion = () => {
-    handleCloseCorrectModal()
-    handleCloseIncorrectModal()
+    const nextQuestion = contextState.currentQuestion + 1
 
-    const nextQuestion = currentQuestion + 1
-    if (nextQuestion < questions.length) {
-      setCurrentQuestion(nextQuestion)
+    setContextState({
+      ...contextState,
+      showCorrectModal: false,
+      showIncorrectModal: false,
+    })
+
+    if (nextQuestion < contextState.questions.length) {
+      setContextState({
+        ...contextState,
+        currentQuestion: nextQuestion,
+      })
     } else {
-      handleShowScoreModal()
+      setContextState({
+        ...contextState,
+        showScoreModal: true,
+      })
     }
   }
 
   return (
     <div className="w-full">
-      <Progress currentQuestion={currentQuestion} questions={questions} />
-      <>
-        <Question
-          questions={questions}
-          currentQuestion={currentQuestion}
-          setScore={setScore}
-          setShowCorrectModal={setShowCorrectModal}
-          setShowIncorrectModal={setShowIncorrectModal}
-        />
-      </>
+      {contextState.questions ? (
+        <>
+          <Progress />
+          <Question />
+        </>
+      ) : (
+        <Spinner />
+      )}
 
-      {showScoreModal && (
+      {contextState.showScoreModal && (
         <ModalPortal onClose={handleCloseScoreModal}>
           <div className="flex flex-col justify-center">
-            <Score score={score} questions={questions} />
+            <Score />
             <div className="flex justify-around">
               <Button className="bg-primary" onClick={handleRetryQuiz}>
                 Reintentar
@@ -77,7 +79,8 @@ export default function QuizLayout({ questions }) {
           </div>
         </ModalPortal>
       )}
-      {showCorrectModal && (
+
+      {contextState.showCorrectModal && (
         <ModalPortal onClose={handleCloseCorrectModal}>
           <div className="flex flex-col justify-center bg-secondary">
             <div className="flex justify-center">
@@ -92,7 +95,8 @@ export default function QuizLayout({ questions }) {
           </div>
         </ModalPortal>
       )}
-      {showIncorrectModal && (
+
+      {contextState.showIncorrectModal && (
         <ModalPortal onClose={handleCloseIncorrectModal}>
           <div className="flex flex-col justify-center bg-primary">
             <div className="flex justify-center">
