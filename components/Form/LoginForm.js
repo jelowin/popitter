@@ -30,7 +30,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form className="grid place-items-center" onSubmit={handleSubmit}>
         <Input
           type="text"
           name="email"
@@ -48,12 +48,6 @@ export default function LoginForm() {
           Login
         </Button>
       </form>
-      <style jsx>{`
-        form {
-          display: grid;
-          place-items: center;
-        }
-      `}</style>
     </>
   )
 }

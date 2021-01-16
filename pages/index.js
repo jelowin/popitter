@@ -1,4 +1,3 @@
-import { colors } from "styles/theme"
 import AppLayout from "components/AppLayout"
 import Head from "next/head"
 import LoginForm from "components/Form/LoginForm"
@@ -21,35 +20,11 @@ export default function Home() {
         <Section>
           <h1 className="font-logo">Popitter</h1>
           <h2>Prepare your exam and approve!👍</h2>
-          <div>
+          <div className="my-4">
             <LoginForm />
           </div>
         </Section>
       </AppLayout>
-
-      <style jsx>{`
-        div {
-          margin: 8px 0;
-        }
-        section {
-          display: grid;
-          height: 100%;
-          place-items: center;
-          place-content: center;
-        }
-
-        h1 {
-          color: ${colors.primary};
-          font-weight: 800;
-          margin-bottom: 16px;
-        }
-
-        h2 {
-          color: ${colors.secondary};
-          font-size: 18px;
-          margin: 0;
-        }
-      `}</style>
     </>
   )
 }

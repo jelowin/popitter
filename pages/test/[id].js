@@ -1,21 +1,30 @@
 import AppLayout from "components/AppLayout"
 import QuizLayout from "components/QuizLayout"
 import Section from "components/Section"
-import { QuizProvider } from "context/QuizContext"
-import { useRouter } from "next/router"
 
-export default function TestDetail() {
-  const {
-    query: { id },
-  } = useRouter()
-
+export default function TestDetail(data) {
   return (
     <AppLayout>
       <Section>
-        <QuizProvider testId={id}>
-          <QuizLayout />
-        </QuizProvider>
+        <QuizLayout data={data} />
       </Section>
     </AppLayout>
   )
+}
+
+export async function getServerSideProps({ params }) {
+  const res = await fetch(`${process.env.API}/api/test/${params.id}`)
+  const data = await res.json()
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: {
+      data,
+    },
+  }
 }

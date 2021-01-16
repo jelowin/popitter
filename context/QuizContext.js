@@ -1,8 +1,8 @@
-import React, { useEffect } from "react"
+import React from "react"
 
 const QuizStateContext = React.createContext()
 
-function QuizProvider({ children, testId }) {
+function QuizProvider({ children }) {
   const [contextState, setContextState] = React.useState({
     currentQuestion: 0,
     isLoading: false,
@@ -13,17 +13,17 @@ function QuizProvider({ children, testId }) {
     showIncorrectModal: false,
   })
 
-  useEffect(() => {
-    fetch(`/api/test/${testId}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setContextState({
-          ...contextState,
-          questions: res,
-        })
-      })
-      .catch(console.error)
-  }, [])
+  // useEffect(() => {
+  //   fetch(`/api/test/${testId}`)
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       setContextState({
+  //         ...contextState,
+  //         questions: res,
+  //       })
+  //     })
+  //     .catch(console.error)
+  // }, [])
 
   return (
     <QuizStateContext.Provider value={{ contextState, setContextState }}>

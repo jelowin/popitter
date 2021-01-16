@@ -1,3 +1,4 @@
+import { useState } from "react"
 import Button from "components/Button"
 import Header from "components/Header"
 import HappyIcon from "components/Icons/HappyIcon"
@@ -6,99 +7,71 @@ import Modal from "components/Modal"
 import Progress from "components/Progress"
 import Question from "components/Question"
 import Score from "components/Score"
-import Spinner from "components/Spinner/Spinner"
-import { useQuizState } from "context/QuizContext"
 import Link from "next/link"
 
-export default function QuizLayout() {
-  const { contextState, setContextState } = useQuizState()
+export default function QuizLayout({ data }) {
+  const [questions] = useState({ data })
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [showCorrectModal, setShowCorrectModal] = useState(false)
+  const [showIncorrectModal, setShowIncorrectModal] = useState(false)
+  const [showScoreModal, setShowScoreModal] = useState(false)
+  const [score, setScore] = useState(0)
 
   const handleCloseScoreModal = () => {
-    setContextState((prevState) => {
-      return {
-        ...prevState,
-        showScoreModal: false,
-      }
-    })
+    setShowScoreModal(false)
   }
 
   const handleCloseCorrectModal = () => {
-    setContextState((prevState) => {
-      return {
-        ...prevState,
-        showCorrectModal: false,
-      }
-    })
+    setShowCorrectModal(false)
   }
 
   const handleCloseIncorrectModal = () => {
-    setContextState((prevState) => {
-      return {
-        ...prevState,
-        showIncorrectModal: false,
-      }
-    })
+    setShowIncorrectModal(false)
   }
 
   const handleRetryQuiz = () => {
-    setContextState((prevState) => {
-      return {
-        ...prevState,
-        currentQuestion: 0,
-        score: 0,
-      }
-    })
+    setCurrentQuestion(0)
+    setScore(0)
     handleCloseScoreModal()
   }
 
   const handleNextQuestion = () => {
-    const nextQuestion = contextState.currentQuestion + 1
+    const nextQuestion = currentQuestion + 1
 
-    setContextState((prevState) => {
-      return {
-        ...prevState,
-        showCorrectModal: false,
-        showIncorrectModal: false,
-      }
-    })
-
-    if (nextQuestion < contextState.questions.length) {
-      setContextState((prevState) => {
-        return {
-          ...prevState,
-          currentQuestion: nextQuestion,
-        }
+    if (nextQuestion < data.data.length) {
+      setCurrentQuestion((prevCurrentQuestion) => {
+        return prevCurrentQuestion + 1
       })
     } else {
-      setContextState((prevState) => {
-        return {
-          ...prevState,
-          showScoreModal: true,
-        }
-      })
+      setShowScoreModal(true)
     }
   }
 
   return (
     <>
-      {contextState.questions ? (
+      {questions && (
         <div className="w-full">
           <Header />
-          <Progress />
-          <Question />
+          <Progress data={questions} currentQuestion={currentQuestion} />
+          <Question
+            data={questions}
+            currentQuestion={currentQuestion}
+            setScore={setScore}
+            setShowCorrectModal={setShowCorrectModal}
+            setShowIncorrectModal={setShowIncorrectModal}
+          />
           <div className="flex justify-center mt-5">
             <Button className="bg-primary" onClick={handleNextQuestion}>
               Siguiente
             </Button>
           </div>
         </div>
-      ) : (
-        <Spinner />
       )}
-      {contextState.showScoreModal && (
+
+      {showScoreModal && (
         <Modal onClose={handleCloseScoreModal}>
           <div className="flex flex-col justify-center">
-            <Score />
+            <Score score={score} data={data} />
             <div className="flex justify-around">
               <Button className="bg-primary" onClick={handleRetryQuiz}>
                 Reintentar
@@ -113,7 +86,7 @@ export default function QuizLayout() {
         </Modal>
       )}
 
-      {contextState.showCorrectModal && (
+      {showCorrectModal && (
         <Modal onClose={handleCloseCorrectModal}>
           <div className="flex flex-col justify-center bg-secondary p-6">
             <div className="flex justify-center">
@@ -124,7 +97,7 @@ export default function QuizLayout() {
         </Modal>
       )}
 
-      {contextState.showIncorrectModal && (
+      {showIncorrectModal && (
         <Modal onClose={handleCloseIncorrectModal}>
           <div className="flex flex-col justify-center bg-primary p-6">
             <div className="flex justify-center">

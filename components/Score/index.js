@@ -1,15 +1,11 @@
-import { useQuizState } from "context/QuizContext"
-
-export default function Score() {
-  const { contextState } = useQuizState()
-
+export default function Score({ score, data }) {
   const calculatePercentage = () => {
-    return `${(contextState.score / contextState.questions.length) * 100} %`
+    return `${(score / data.data.length) * 100} %`
   }
   return (
     <div className="text-center">
       <h3 className="mb-4">
-        Has acertado {contextState.score} de {contextState.questions.length}
+        Has acertado {score} de {data.data.length}
       </h3>
       <h2 className="mb-5">Tu puntuación final es: {calculatePercentage()}</h2>
     </div>

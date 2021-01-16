@@ -1,18 +1,13 @@
-import { useQuizState } from "context/QuizContext"
-
-export default function Progress() {
-  const { contextState } = useQuizState()
-
+export default function Progress({ data, currentQuestion }) {
   return (
     <>
-      {contextState.questions ? (
+      {data.data && (
         <div className="flex justify-center mb-2">
           <h5>
-            Pregunta {contextState.currentQuestion + 1} de{" "}
-            {contextState.questions.length}
+            Pregunta {currentQuestion + 1} de {data.data.data.length}
           </h5>
         </div>
-      ) : null}
+      )}
     </>
   )
 }
