@@ -1,6 +1,8 @@
 // import App from 'next/app'
-import React from "react"
+import React, { useEffect } from "react"
 import Router from "next/router"
+import { SWRConfig } from "swr"
+import fetcher from "utils/fetcher"
 import Spinner from "../components/Spinner/Spinner"
 
 import "styles/global.css"
@@ -8,7 +10,7 @@ import "styles/global.css"
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = React.useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const start = () => {
       setLoading(true)
     }
@@ -27,13 +29,19 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      {loading ? (
-        <div className="grid place-items-center place-content-center absolute inset-0">
-          <Spinner />
-        </div>
-      ) : (
-        <Component {...pageProps} />
-      )}
+      <SWRConfig
+        value={{
+          fetcher,
+        }}
+      >
+        {loading ? (
+          <div className="grid place-items-center place-content-center absolute inset-0">
+            <Spinner />
+          </div>
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </SWRConfig>
     </>
   )
 }

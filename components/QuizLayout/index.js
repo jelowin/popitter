@@ -1,16 +1,21 @@
 import { useState } from "react"
 import Button from "components/Button"
 import Header from "components/Header"
-import HappyIcon from "components/Icons/HappyIcon"
+import OkSvg from "components/Svg/OkSvg"
 import SadIcon from "components/Icons/SadIcon"
 import Modal from "components/Modal"
 import Progress from "components/Progress"
 import Question from "components/Question"
 import Score from "components/Score"
 import Link from "next/link"
+import { useTest } from "hooks/useTest"
+import { useRouter } from "next/router"
 
-export default function QuizLayout({ data }) {
-  const [questions] = useState({ data })
+export default function QuizLayout() {
+  const router = useRouter()
+  const { query } = router
+
+  const { data } = useTest(query.id)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [showCorrectModal, setShowCorrectModal] = useState(false)
   const [showIncorrectModal, setShowIncorrectModal] = useState(false)
@@ -38,7 +43,7 @@ export default function QuizLayout({ data }) {
   const handleNextQuestion = () => {
     const nextQuestion = currentQuestion + 1
 
-    if (nextQuestion < data.data.length) {
+    if (nextQuestion < data.length) {
       setCurrentQuestion((prevCurrentQuestion) => {
         return prevCurrentQuestion + 1
       })
@@ -49,29 +54,23 @@ export default function QuizLayout({ data }) {
 
   return (
     <>
-      {questions && (
+      {data && (
         <div className="w-full">
           <Header />
-          <Progress data={questions} currentQuestion={currentQuestion} />
+          <Progress currentQuestion={currentQuestion} />
           <Question
-            data={questions}
             currentQuestion={currentQuestion}
             setScore={setScore}
             setShowCorrectModal={setShowCorrectModal}
             setShowIncorrectModal={setShowIncorrectModal}
           />
-          <div className="flex justify-center mt-5">
-            <Button className="bg-primary" onClick={handleNextQuestion}>
-              Siguiente
-            </Button>
-          </div>
         </div>
       )}
 
       {showScoreModal && (
         <Modal onClose={handleCloseScoreModal}>
           <div className="flex flex-col justify-center">
-            <Score score={score} data={data} />
+            <Score score={score} />
             <div className="flex justify-around">
               <Button className="bg-primary" onClick={handleRetryQuiz}>
                 Reintentar
@@ -88,11 +87,12 @@ export default function QuizLayout({ data }) {
 
       {showCorrectModal && (
         <Modal onClose={handleCloseCorrectModal}>
-          <div className="flex flex-col justify-center bg-secondary p-6">
-            <div className="flex justify-center">
-              <HappyIcon />
+          <div className="flex flex-col justify-center p-6 bg-white">
+            <OkSvg />
+            <h3 className="text-secondary">Respuesta correcta</h3>
+            <div className="flex justify-center items-center mt-5">
+              <Button onClick={handleNextQuestion}>Siguiente</Button>
             </div>
-            <h3 className="text-white text-center">Respuesta correcta</h3>
           </div>
         </Modal>
       )}
@@ -104,6 +104,9 @@ export default function QuizLayout({ data }) {
               <SadIcon />
             </div>
             <h2 className="text-white text-center">Respuesta incorrecta</h2>
+            <div className="flex justify-center items-center mt-5">
+              <Button onClick={handleNextQuestion}>Siguiente</Button>
+            </div>
           </div>
         </Modal>
       )}

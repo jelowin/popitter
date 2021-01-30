@@ -3,14 +3,16 @@ import ReactDOM from "react-dom"
 
 function Modal({ children, onClose }) {
   return (
-    <div className="fixed inset-0">
-      <div className="flex flex-col justify-center items-center rounded-lg p-2.5 relative h-4/5 ">
-        <button className="flex justify-end" onClick={onClose}>
-          <div className="flex justify-end">
-            <CloseIcon />
-          </div>
+    <div className="flex flex-col justify-center fixed inset-0 p-2.5">
+      <div className="flex justify-end">
+        <button onClick={onClose}>
+          <CloseIcon />
         </button>
-        {children}
+      </div>
+      {children}
+      <div className="flex justify-between">
+        <a>Volver al listado</a>
+        <a className="text-red-600 font-semibold">Reintentar</a>
       </div>
     </div>
   )

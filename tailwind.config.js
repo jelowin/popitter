@@ -17,7 +17,7 @@ module.exports = {
         secondary: colors.green["400"],
       },
       fontFamily: {
-        logo: ["Quicksand, sans-serif"],
+        base: ["Quicksand, sans-serif"],
       },
     },
   },

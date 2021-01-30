@@ -1,22 +1,27 @@
 import AppLayout from "components/AppLayout"
+import fetcher from "utils/fetcher"
 import QuizLayout from "components/QuizLayout"
 import Section from "components/Section"
+import Spinner from "components/Spinner/Spinner"
+import useSWR from "swr"
+import { useRouter } from "next/router"
 
-export default function TestDetail(data) {
+export default function TestDetail({ questions }) {
+  const router = useRouter()
+  const { query } = router
+  const { data } = useSWR(`api/test/${query.id}`, { initialData: questions })
+
   return (
     <AppLayout>
-      <Section>
-        <QuizLayout data={data} />
-      </Section>
+      <Section>{data ? <QuizLayout /> : <Spinner />}</Section>
     </AppLayout>
   )
 }
 
 export async function getServerSideProps({ params }) {
-  const res = await fetch(`${process.env.API}/api/test/${params.id}`)
-  const data = await res.json()
+  const questions = await fetcher(`api/test/${params.id}`)
 
-  if (!data) {
+  if (!questions) {
     return {
       notFound: true,
     }
@@ -24,7 +29,7 @@ export async function getServerSideProps({ params }) {
 
   return {
     props: {
-      data,
+      questions,
     },
   }
 }

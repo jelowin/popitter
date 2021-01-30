@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import Button from "components/Button"
 import Input from "components/Input"
-import EmailSvg from "components/Svg/EmailSvg"
+import EmailIcon from "components/Icons/EmailIcon"
 import { loginWithEmail } from "firebase/client"
 import { useCallback, useState } from "react"
 import { errorHandler } from "utils/errorHandler"
@@ -44,7 +44,7 @@ export default function LoginForm() {
           placeholder="Your password"
         ></Input>
         <Button type="submit">
-          <EmailSvg />
+          <EmailIcon />
           Login
         </Button>
       </form>

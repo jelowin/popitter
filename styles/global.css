@@ -3,23 +3,31 @@
 @tailwind utilities;
 
 h1 {
-  @apply text-5xl text-primary font-bold mb-5;
+  @apply font-base text-5xl text-primary font-semibold mb-5;
 }
 
 h2 {
-  @apply text-2xl text-primary font-semibold;
+  @apply font-base text-2xl text-primary font-medium;
 }
 
 h3 {
-  @apply text-xl text-primary font-medium;
+  @apply font-base text-xl text-primary font-medium;
 }
 
 h4 {
-  @apply text-lg text-primary font-semibold;
+  @apply font-base text-lg text-primary font-medium;
 }
 
 h5 {
-  @apply text-base text-primary font-semibold;
+  @apply font-base text-base text-primary font-medium;
+}
+
+span {
+  @apply font-base text-base font-light;
+}
+
+button {
+  @apply font-base text-base font-semibold;
 }
 
 :-webkit-scrollbar {
