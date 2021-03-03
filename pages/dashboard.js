@@ -26,7 +26,7 @@ export default function Home({ list }) {
         <Section>
           {data ? (
             <>
-              <h2 className="mb-2">Listado de tests</h2>
+              <h2>Listado de tests</h2>
               <div>
                 <List></List>
               </div>

@@ -17,7 +17,8 @@ module.exports = {
         secondary: colors.green["400"],
       },
       fontFamily: {
-        base: ["Quicksand, sans-serif"],
+        title: ["Lobster, cursive"],
+        base: ["Source Sans Pro, sans-serif"],
       },
     },
   },

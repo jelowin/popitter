@@ -1,5 +1,6 @@
 // import App from 'next/app'
 import React, { useEffect } from "react"
+import { RecoilRoot } from "recoil"
 import Router from "next/router"
 import { SWRConfig } from "swr"
 import fetcher from "utils/fetcher"
@@ -28,7 +29,7 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
-    <>
+    <RecoilRoot>
       <SWRConfig
         value={{
           fetcher,
@@ -42,7 +43,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         )}
       </SWRConfig>
-    </>
+    </RecoilRoot>
   )
 }
 

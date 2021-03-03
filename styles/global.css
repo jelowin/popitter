@@ -1,13 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap"');
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 h1 {
-  @apply font-base text-5xl text-primary font-semibold mb-5;
+  @apply font-title text-5xl text-primary font-bold mb-5;
 }
 
 h2 {
-  @apply font-base text-2xl text-primary font-medium;
+  @apply font-base text-2xl text-primary font-semibold mb-3;
 }
 
 h3 {
@@ -15,7 +19,7 @@ h3 {
 }
 
 h4 {
-  @apply font-base text-lg text-primary font-medium;
+  @apply font-base text-lg text-primary font-semibold;
 }
 
 h5 {
@@ -27,9 +31,34 @@ span {
 }
 
 button {
-  @apply font-base text-base font-semibold;
+  @apply font-base text-base font-bold;
 }
 
+p {
+  @apply font-base font-normal text-lg leading-relaxed;
+}
 :-webkit-scrollbar {
   display: none;
+}
+
+html,
+body {
+  /* background-image: radial-gradient(${colors.primary} 1px, transparent 1px),
+    radial-gradient(${colors.primary} 1px, transparent 1px); */
+  background-position: 0, 0, 25px, 25px;
+  background-size: 50px 50px;
+  padding: 0;
+  margin: 0;
+  @apply font-base;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ol,
+ul {
+  list-style: none;
 }

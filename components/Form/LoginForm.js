@@ -31,21 +31,19 @@ export default function LoginForm() {
   return (
     <>
       <form className="grid place-items-center" onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          name="email"
-          onChange={handleChange}
-          placeholder="Your email"
-        ></Input>
-        <Input
-          type="password"
-          name="password"
-          onChange={handleChange}
-          placeholder="Your password"
-        ></Input>
+        <div>
+          <Input
+            type="text"
+            name="email"
+            className="text-center"
+            onChange={handleChange}
+            placeholder="Your email"
+          ></Input>
+        </div>
+        <Input type="password" name="password" onChange={handleChange} placeholder="Your password"></Input>
         <Button type="submit">
           <EmailIcon />
-          Login
+          LOGIN
         </Button>
       </form>
     </>
