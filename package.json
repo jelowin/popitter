@@ -10,10 +10,16 @@
     "lint:prettier": "prettier . --write"
   },
   "dependencies": {
+    "autoprefixer": "^10.2.1",
     "firebase": "8.0.2",
     "next": "10.0.1",
+    "postcss": "^8.2.4",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-content-loader": "^5.1.4",
+    "react-dom": "17.0.1",
+    "recoil": "^0.1.2",
+    "swr": "^0.4.0",
+    "tailwindcss": "^2.0.2"
   },
   "devDependencies": {
     "eslint": "7.12.1",

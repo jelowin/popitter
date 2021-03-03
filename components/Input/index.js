@@ -6,14 +6,10 @@ export default function Input({ children, onChange, name, type, placeholder }) {
         name={name}
         onChange={onChange}
         placeholder={placeholder}
+        className="mb-2"
       >
         {children}
       </input>
-      <style jsx>{`
-        input {
-          margin-bottom: 8px;
-        }
-      `}</style>
     </>
   )
 }
