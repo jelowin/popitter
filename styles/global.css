@@ -1,17 +1,48 @@
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap"');
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html,
+body {
+  /* background-image: radial-gradient(${colors.primary} 1px, transparent 1px),
+    radial-gradient(${colors.primary} 1px, transparent 1px); */
+  background-position: 0, 0, 25px, 25px;
+  background-size: 50px 50px;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  @apply font-base;
+}
+
+#__next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
 h1 {
-  @apply font-title text-5xl text-primary font-bold mb-5;
+  @apply font-title text-6xl text-gray-default font-normal;
 }
 
 h2 {
-  @apply font-base text-2xl text-primary font-semibold mb-3;
+  @apply font-base text-lg text-gray-default font-medium;
 }
 
 h3 {
@@ -39,26 +70,4 @@ p {
 }
 :-webkit-scrollbar {
   display: none;
-}
-
-html,
-body {
-  /* background-image: radial-gradient(${colors.primary} 1px, transparent 1px),
-    radial-gradient(${colors.primary} 1px, transparent 1px); */
-  background-position: 0, 0, 25px, 25px;
-  background-size: 50px 50px;
-  padding: 0;
-  margin: 0;
-  @apply font-base;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-ol,
-ul {
-  list-style: none;
 }

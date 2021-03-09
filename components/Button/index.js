@@ -1,18 +1,22 @@
-export default function Button({ children, className, onClick, ...restProps }) {
+export default function Button({
+  children,
+  className,
+  color,
+  onClick,
+  icon,
+  value,
+  ...restProps
+}) {
   return (
     <>
       <button
-        className="flex items-center text-base text-primary border-0 cursor-pointer transition-opacity focus:outline-none hover:opacity-70"
+        className={`col-span-4 flex justify-center items-center ${color} h-14 w-full rounded-md	border-0 cursor-pointer transition-opacity focus:outline-none hover:opacity-70`}
         onClick={onClick}
         {...restProps}
       >
-        {children}
+        <span className='text-lg text-white font-normal'>{value}</span>
+        <div className='text-white ml-5'>{icon}</div>
       </button>
-      <style jsx>{`
-        button > :global(svg) {
-          margin-right: 8px;
-        }
-      `}</style>
     </>
   )
 }

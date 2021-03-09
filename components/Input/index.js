@@ -6,7 +6,7 @@ export default function Input({ children, onChange, name, type, placeholder }) {
         name={name}
         onChange={onChange}
         placeholder={placeholder}
-        className="mb-2"
+        className='mb-2'
       >
         {children}
       </input>

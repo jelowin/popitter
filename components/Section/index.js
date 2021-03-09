@@ -1,7 +1,6 @@
-export default function Section({ children, className }) {
-  // TODO Fix default undefined classname
+export default function Section({ children }) {
   return (
-    <section className={`grid h-full place-items-center place-content-center py-5 ${className ?? ""}`}>
+    <section className='sm:col-span-full md:col-start-4 md:col-end-10 flex flex-col justify-center items-center w-full h-screen md:h-5/6 md:rounded-2xl md:shadow-sm'>
       {children}
     </section>
   )
