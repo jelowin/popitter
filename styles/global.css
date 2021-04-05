@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -42,19 +42,19 @@ h1 {
 }
 
 h2 {
-  @apply font-base text-lg text-gray-default font-medium;
+  @apply font-base text-2xl text-gray-default font-bold;
 }
 
 h3 {
-  @apply font-base text-xl text-primary font-medium;
+  @apply font-base text-lg text-gray-default font-bold;
 }
 
 h4 {
-  @apply font-base text-lg text-primary font-semibold;
+  @apply font-base text-lg text-gray-default font-semibold;
 }
 
 h5 {
-  @apply font-base text-base text-primary font-medium;
+  @apply font-base text-lg text-gray-default font-normal;
 }
 
 span {
@@ -68,6 +68,11 @@ button {
 p {
   @apply font-base font-normal text-lg leading-relaxed;
 }
+
+ul li {
+  @apply font-base font-normal text-lg leading-relaxed;
+}
+
 :-webkit-scrollbar {
   display: none;
 }

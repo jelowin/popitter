@@ -1,23 +1,23 @@
-import List from "components/List"
-import AppLayout from "components/AppLayout"
-import Section from "components/Section"
-import fetcher from "utils/fetcher"
-import useSWR from "swr"
-import Spinner from "components/Spinner/Spinner"
+import List from 'components/List'
+import AppLayout from 'components/AppLayout'
+import Section from 'components/Section'
+import fetcher from 'utils/fetcher'
+import useSWR from 'swr'
+import Spinner from 'components/Spinner/Spinner'
 
 export default function Home({ list }) {
-  const { data } = useSWR("api/list", {
+  const { data } = useSWR('api/list', {
     initialData: list,
     onErrorRetry: (error, key, config, revalidate, { retryCount }) => {
       // Never retry on 404.
       if (error.status === 404) return
       // Never retry for a specific key.
-      if (key === "api/list") return
+      if (key === 'api/list') return
       // Only retry up to 10 times.
       if (retryCount >= 10) return
       // Retry after 5 seconds.
       setTimeout(() => revalidate({ retryCount: retryCount + 1 }), 5000)
-    },
+    }
   })
 
   return (
@@ -26,7 +26,7 @@ export default function Home({ list }) {
         <Section>
           {data ? (
             <>
-              <h2>Listado de tests</h2>
+              <h2 className='mb-20'>Listado de tests</h2>
               <div>
                 <List></List>
               </div>
@@ -47,13 +47,13 @@ export async function getStaticProps() {
 
   if (!data) {
     return {
-      notFound: true,
+      notFound: true
     }
   }
 
   return {
     props: {
-      list: data,
-    }, // will be passed to the page component as props
+      list: data
+    } // will be passed to the page component as props
   }
 }
