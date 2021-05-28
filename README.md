@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/74491547/119952806-aab9b500-bf9d-11eb-9478-aba3fe02d4b8.png)
+
+
 # What is Popitter?
 Popitter is an app made in NextJS + TailwindCSS + Firebase Authentication which is objectiveis to take a questionnaire to study for an upcoming exam.
 
